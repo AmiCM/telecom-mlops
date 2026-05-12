@@ -48,12 +48,15 @@ El proyecto sigue la estructura estándar de un Asset Bundle, separando la lógi
 - uv instalado para la gestión de entorno local.
 
 ### 2. Instalación Local
+
+1. Clonar el repositorio
 ```bash
-# Clonar el repositorio
 git clone <url-del-repo>
 cd <nombre-del-repo>
+```
 
-# Crear entorno virtual e instalar dependencias con uv
+2. Crear entorno virtual e instalar dependencias con uv
+```bash
 uv sync
 ```
 
