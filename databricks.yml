@@ -46,7 +46,7 @@ targets:
       branch: ACC
       schedule_pause_status: PAUSED
 
-  prod:
+  prd:
     mode: production
     workspace:
       host: https://8259559314352370.0.gcp.databricks.com

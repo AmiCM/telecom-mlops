@@ -1,0 +1,63 @@
+name: CD
+
+on:
+  workflow_dispatch: # Permite dispararlo manualmente desde la web
+
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy to Databricks Environment
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false # Evita que si falla dev, se cancelen acc o prd
+      matrix:
+        environment: [dev, acc, prd] # Tus tres entornos en paralelo
+    
+    # Vincula dinámicamente las variables y secretos según el entorno de la matriz
+    environment: ${{ matrix.environment }}
+    
+    permissions:
+      contents: write # Permiso para empujar el tag de Git en producción
+
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Databricks CLI
+        uses: databricks/setup-cli@v1
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+
+      # Extraer el Short SHA para pasarlo al bundle
+      - name: Get Short Git SHA
+        id: git-meta
+        run: |
+          echo "short_sha=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+
+      - name: Deploy to Databricks
+        # El CLI de Databricks detectará automáticamente las variables del entorno activo
+        env:
+          DATABRICKS_HOST: ${{ vars.DATABRICKS_HOST }}
+          DATABRICKS_CLIENT_ID: ${{ secrets.DATABRICKS_CLIENT_ID }}
+          DATABRICKS_CLIENT_SECRET: ${{ secrets.DATABRICKS_CLIENT_SECRET }}
+        run: |
+          databricks bundle deploy \
+            -t ${{ matrix.environment }} \
+            --var="git_sha=${{ steps.git-meta.outputs.short_sha }}" \
+            --var="branch=${{ github.ref_name }}"
+
+      # Si la iteración actual de la matriz es 'prd', genera el tag de versión en tu repositorio
+      - name: Create Production Git Tag
+        if: matrix.environment == 'prd'
+        run: |
+          VERSION=$(cat version.txt)
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git tag $VERSION
+          git push origin $VERSION
