@@ -1,0 +1,30 @@
+resources:
+  pipelines:
+    telecom_clients:
+      name: "Telecom Clients"
+      catalog: "deops_${bundle.target}"
+      target: "telecom"
+      continuous: false
+      channel: "CURRENT"
+      serverless: true
+      libraries:
+        - file:
+            path: "../src/data_engineering/etl_clients.py"
+      configuration:
+        environment: ${bundle.target}
+        checkpoint_volume_path: "/Volumes/deops_${bundle.target}/telecom/checkpoints"
+
+  jobs:
+    telecom_clients_job:
+      name: "Telecom Clients Job"
+    
+      schedule:
+        quartz_cron_expression: "0 0 1 * * ?"
+        timezone_id: "America/Mexico_City"
+        pause_status: ${var.schedule_pause_status}
+
+      tasks:
+        - task_key: run_telecom_clients_pipeline
+          description: "Run the telecom clients DLT pipeline"
+          pipeline_task:
+            pipeline_id: ${resources.pipelines.telecom_clients.id}
