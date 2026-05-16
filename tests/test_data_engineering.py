@@ -1,7 +1,9 @@
 # ruff: noqa
 import pytest
+
 # Importamos las constantes desde tu módulo de utilidades
 from data_engineering.utils.utils import WHITELIST_COLUMNS, IMPUTATION_COLUMNS
+
 
 def test_utils_constants_are_not_empty():
     """Verifica que las listas de configuración de columnas se importen correctamente."""
@@ -9,6 +11,7 @@ def test_utils_constants_are_not_empty():
     assert WHITELIST_COLUMNS is not None
     assert len(WHITELIST_COLUMNS) > 0
     assert isinstance(IMPUTATION_COLUMNS, dict)
+
 
 def test_ejemplo_simple():
     """Una prueba matemática básica para asegurar que pytest responda."""
