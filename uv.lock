@@ -1900,6 +1900,8 @@ test = [
 dev = [
     { name = "databricks-dlt" },
     { name = "pre-commit" },
+    { name = "pytest" },
+    { name = "pytest-cov" },
 ]
 
 [package.metadata]
@@ -1932,6 +1934,8 @@ provides-extras = ["dev", "test"]
 dev = [
     { name = "databricks-dlt", specifier = ">=0.3.0" },
     { name = "pre-commit", specifier = ">=4.6.0" },
+    { name = "pytest", specifier = ">=8.4.2" },
+    { name = "pytest-cov", specifier = ">=5.0.0" },
 ]
 
 [[package]]

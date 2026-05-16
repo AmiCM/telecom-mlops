@@ -95,4 +95,6 @@ docstring-code-format = true
 dev = [
     "databricks-dlt>=0.3.0",
     "pre-commit>=4.6.0",
+    "pytest>=8.4.2",
+    "pytest-cov>=5.0.0",
 ]
