@@ -38,7 +38,6 @@ targets:
     presets:
       name_prefix: "[staging] "
     workspace:
-      host: ${vars.DATABRICKS_HOST}
       root_path: /Shared/.bundle/${bundle.target}/${bundle.name}
     variables:
       branch: ACC
@@ -47,7 +46,6 @@ targets:
   prd:
     mode: production
     workspace:
-      host: ${vars.DATABRICKS_HOST}
       root_path: /Shared/.bundle/${bundle.target}/${bundle.name}
     variables:
       branch: PROD
