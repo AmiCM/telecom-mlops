@@ -27,12 +27,10 @@ jobs:
 
     steps:
       - name: Checkout Source Code
-        uses: actions/checkout@v4actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        uses: actions/checkout@v4actions/checkout@main
 
       - name: Install Databricks CLI
-        uses: databricks/setup-cli@49580195afe1ccb06d195764a1d0ae9fabfe2edd
-        with:
-          version: 0.246.0
+        uses: databricks/setup-cli@main
       
       - name: Configure Databricks CLI
         run: |
@@ -45,7 +43,7 @@ jobs:
           EOF
 
       - name: Install uv
-        uses: astral-sh/setup-uv@0c5e2b8115b80b4c7c5ddf6ffdd634974642d182
+        uses: astral-sh/setup-uv@main
 
       - name: Deploy to Databricks
         env:
