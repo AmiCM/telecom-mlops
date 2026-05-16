@@ -52,7 +52,7 @@ targets:
       root_path: /Shared/.bundle/${bundle.target}/${bundle.name}
     variables:
       branch: PROD
-      schedule_pause_status: PAUSED
+      schedule_pause_status: UNPAUSED
     permissions:
       - user_name: amicampos2001@gmail.com
         level: CAN_MANAGE
