@@ -17,7 +17,7 @@ resources:
   jobs:
     telecom_clients_job:
       name: "Telecom Clients Job"
-    
+
       schedule:
         quartz_cron_expression: "0 0 1 * * ?"
         timezone_id: "America/Mexico_City"

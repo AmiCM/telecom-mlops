@@ -14,10 +14,10 @@ jobs:
     strategy:
       matrix:
         environment: [acc, prd] # Tus tres entornos en paralelo
-    
+
     # Vincula dinámicamente las variables y secretos según el entorno de la matriz
     environment: ${{ matrix.environment }}
-    
+
     permissions:
       contents: write # Permiso para empujar el tag de Git en producción
     env:
@@ -34,7 +34,7 @@ jobs:
 
       - name: Install Databricks CLI
         uses: databricks/setup-cli@main
-      
+
       - name: Install uv
         uses: astral-sh/setup-uv@main
 
