@@ -38,7 +38,6 @@ targets:
   acc:
     presets:
       name_prefix: 'acc_'
-    mode: development
     workspace:
       host: https://8259559314352370.0.gcp.databricks.com
       root_path: /Shared/.bundle/${bundle.target}/${bundle.name}
