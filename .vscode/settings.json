@@ -8,13 +8,12 @@
         "**/*.egg-info": true,
         "**/__pycache__": true,
         ".pytest_cache": true,
-        "dist": true,
+        "dist": true
     },
     "files.associations": {
         "**/.gitkeep": "markdown"
     },
 
-    // Pylance settings (VS Code)
     // Set typeCheckingMode to "basic" to enable type checking!
     "python.analysis.typeCheckingMode": "off",
     "python.analysis.extraPaths": ["src", "lib", "resources"],

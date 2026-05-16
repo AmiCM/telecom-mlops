@@ -39,7 +39,7 @@ test = [
 requires = [
   "setuptools>=72.0"
   ]
-  
+
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
@@ -94,4 +94,5 @@ docstring-code-format = true
 [dependency-groups]
 dev = [
     "databricks-dlt>=0.3.0",
+    "pre-commit>=4.6.0",
 ]

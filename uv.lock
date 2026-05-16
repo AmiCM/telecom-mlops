@@ -1899,6 +1899,7 @@ test = [
 [package.dev-dependencies]
 dev = [
     { name = "databricks-dlt" },
+    { name = "pre-commit" },
 ]
 
 [package.metadata]
@@ -1928,7 +1929,10 @@ requires-dist = [
 provides-extras = ["dev", "test"]
 
 [package.metadata.requires-dev]
-dev = [{ name = "databricks-dlt", specifier = ">=0.3.0" }]
+dev = [
+    { name = "databricks-dlt", specifier = ">=0.3.0" },
+    { name = "pre-commit", specifier = ">=4.6.0" },
+]
 
 [[package]]
 name = "threadpoolctl"
