@@ -38,6 +38,7 @@ targets:
     presets:
       name_prefix: "[staging] "
     workspace:
+      host: https://8259559314352370.0.gcp.databricks.com
       root_path: /Shared/.bundle/${bundle.target}/${bundle.name}
     variables:
       branch: ACC
@@ -46,6 +47,7 @@ targets:
   prd:
     mode: production
     workspace:
+      host: https://8259559314352370.0.gcp.databricks.com
       root_path: /Shared/.bundle/${bundle.target}/${bundle.name}
     variables:
       branch: PROD
