@@ -51,6 +51,7 @@ jobs:
             -t ${{ matrix.environment }} \
             --var="git_sha=${{ steps.git-meta.outputs.short_sha }}" \
             --var="branch=${{ github.ref_name }}"
+            --force-lock
 
       # Si la iteración actual de la matriz es 'prd', genera el tag de versión en tu repositorio
       - name: Create Production Git Tag
