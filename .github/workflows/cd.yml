@@ -27,7 +27,10 @@ jobs:
 
     steps:
       - name: Checkout Source Code
-        uses: actions/checkout@v4actions/checkout@main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Necesario para obtener el historial completo de Git y poder crear tags
+          ref: ${{ github.ref_name }}
 
       - name: Install Databricks CLI
         uses: databricks/setup-cli@main
