@@ -30,7 +30,7 @@ resources:
               - "xgboost"
               - "lightgbm"
               - "mlflow"
-      
+
       tasks:
         # TAREA 1: Ingeniería de Datos (DLT)
         - task_key: run_telecom_clients_pipeline
