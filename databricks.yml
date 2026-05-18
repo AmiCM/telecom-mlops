@@ -29,6 +29,7 @@ targets:
     mode: development
     workspace:
       root_path: /Workspace/Users/${workspace.current_user.userName}/.bundle/${bundle.target}/${bundle.name}
+      host: https://8259559314352370.0.gcp.databricks.com
     variables:
       git_sha: develop
       branch: DEV

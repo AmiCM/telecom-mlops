@@ -11,7 +11,6 @@ resources:
         - file:
             path: "../src/data_engineering/etl_clients.py"
       configuration:
-        environment: ${bundle.target}
         checkpoint_volume_path: "/Volumes/deops_${bundle.target}/telecom/checkpoints"
 
   jobs:
@@ -23,8 +22,29 @@ resources:
         timezone_id: "America/Mexico_City"
         pause_status: ${var.schedule_pause_status}
 
+      environments:
+        - environment_key: ${bundle.target}
+          spec:
+            client: "1"
+            dependencies:
+              - "xgboost"
+              - "lightgbm"
+              - "mlflow"
+
       tasks:
+        # TAREA 1: Ingeniería de Datos (DLT)
         - task_key: run_telecom_clients_pipeline
           description: "Run the telecom clients DLT pipeline"
           pipeline_task:
             pipeline_id: ${resources.pipelines.telecom_clients.id}
+        # TAREA 2: Machine Learning Engineering (Se ejecuta tras la Tarea 1)
+        - task_key: run_telecom_clients_ml
+          environment_key: ${bundle.target}
+          description: "Train XGBoost and LightGBM models using Gold table"
+          depends_on:
+            - task_key: run_telecom_clients_pipeline
+          spark_python_task:
+            python_file: "../src/ml_engineering/model_clients.py"
+            parameters:
+              - "--bundle_target"
+              - "${bundle.target}"

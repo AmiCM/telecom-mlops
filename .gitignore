@@ -9,3 +9,6 @@ scratch/**
 **/explorations/**
 **/!explorations/README.md
 .vscode/
+.coverage
+coverage.xml
+.ruff_cache/
